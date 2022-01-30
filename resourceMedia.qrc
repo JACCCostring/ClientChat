@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/soundEffects">
+        <file>keyPress.wav</file>
+        <file>receivedMessage.wav</file>
+    </qresource>
+</RCC>
