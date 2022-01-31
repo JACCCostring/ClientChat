@@ -9,8 +9,10 @@ Window {
     id: mainFrame
     width: 490
     height: 602
-    //maximumWidth: 490
+    maximumWidth: 490
+    minimumWidth: 490
     maximumHeight: 602
+    minimumHeight: 602
     visible: true
     title: qsTr("Chatter")
     color: "GhostWhite"
@@ -102,7 +104,7 @@ Window {
             //textfield for server
             TextField{
                 id: serverIP
-                text: "127.0.0.1"
+                text: "192.168.10.187"
                 height: 40
                 enabled: false
                 opacity: 0.0
