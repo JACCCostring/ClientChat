@@ -13,8 +13,10 @@ public:
     //method send message
     Q_INVOKABLE void sendMessage(const QString &, const QString &, qint16);
     Q_INVOKABLE void disconnectFromServer();
+
+private:
     //emthod for fixing message to send
-    void fixMessage(QString &);
+     void fixMessage(QString &);
 
 signals:
     void newMessage(const QString &newMsg);

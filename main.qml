@@ -3,16 +3,17 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.1
 import QtQuick.Controls 1.4
 import QtMultimedia 5.5
+import QtQuick.Layouts 1.2
 import QtQml 2.0
 
 Window {
     id: mainFrame
     width: 490
-    height: 602
-    maximumWidth: 490
-    minimumWidth: 490
-    maximumHeight: 602
-    minimumHeight: 602
+    height: 614
+    //maximumWidth: 490
+    //minimumWidth: 490
+    maximumHeight: 614
+    //minimumHeight: 600
     visible: true
     title: qsTr("Chatter")
     color: "GhostWhite"
@@ -56,14 +57,17 @@ Window {
         ListView{
             id: listViewMessages
             width: 300
-            height: 560
-            spacing: 1.3
+            height: 587
+            spacing: 1.5
             model: ListModel{
                 id:listModelData
                 ListElement{msg: "Welcome to Chatter"}
             }
             //vertical ScrollBar
-            ScrollBar.vertical: ScrollBar{}
+            ScrollBar.vertical: ScrollBar{
+            id: verticalScrollBar
+            stepSize: 0.1
+            }
             //delegate for data UI
             delegate: Rectangle{
                 width: textRectangle.width + 10
@@ -99,13 +103,13 @@ Window {
                 }
             }
         }//end of list view
-        Row{
-            spacing: 1.5
+        RowLayout{
+            spacing: 4.5
             //textfield for server
             TextField{
                 id: serverIP
-                text: "192.168.10.187"
-                height: 40
+                text: "127.0.0.1"
+                //height: 40
                 enabled: false
                 opacity: 0.0
                 //if any change in IP then disconnect
@@ -114,7 +118,7 @@ Window {
             //SpinBox for server
             SpinBox{
                 id: portServer
-                height: 40
+                //height: 40
                 maximumValue: 65000
                 minimumValue: 1
                 enabled: false
@@ -127,8 +131,8 @@ Window {
             TextField{
                 id: bodyMessage
                 placeholderText: "body message here ..."
-                width: mainFrame.width
-                height: 40
+                //width: 200
+                //height: 40
                 focus: true
                 //event when entered
                 onAccepted: {
@@ -147,6 +151,7 @@ Window {
         onNewMessage: {
             listModelData.append( {msg: newMsg} )
             messageReceivedEffect.play() //play sound effect for messageReceivedEffect
+            verticalScrollBar.increase()
         }
     }
 }//end of code
